@@ -1,10 +1,13 @@
 using E.SUNBankDotNet.Repositories;
+using E.SUNBankDotNet.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<FinanceDBRepo>();
+builder.Services.AddScoped<ILikeListService, LikeListService>();
+builder.Services.AddScoped<IFinanceDbRepo, FinanceDbRepo>();
+
 
 var app = builder.Build();
 

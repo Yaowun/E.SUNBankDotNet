@@ -1,23 +1,37 @@
-﻿@model IEnumerable<E.SUNBankDotNet.Models.LikeList>
-@{
-    ViewData["Title"] = "喜好清單";
-}
+﻿@model List<LikeListViewModel>
 
-<h2>喜好金融商品清單</h2>
-
-<p>
-    <a class="btn btn-primary" asp-action="Create">新增喜好金融商品</a>
-</p>
-
+<a asp-action="Create" class="btn btn-primary mb-3">新增喜好商品</a>
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th>產品名稱</th>
+        <th>產品</th>
+        <th>價格</th>
+        <th>手續費</th>
         <th>數量</th>
+        <th>總金額</th>
         <th>總手續費</th>
-        <th>預計扣款金額</th>
-        <th>帳號</th>
+        <th>扣款帳號</th>
+        <th>信箱</th>
         <th>操作</th>
     </tr>
     </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ProductName</td>
+            <td>@item.ProductPrice</td>
+            <td>@item.FeeRate</td>
+            <td>@item.OrderQuantity</td>
+            <td>@item.TotalAmount</td>
+            <td>@item.TotalFee</td>
+            <td>@item.Account</td>
+            <td>@item.Email</td>
+            <td>
+                <a asp-action="Edit" asp-route-productNo="@item.ProductNo" class="btn btn-sm btn-warning">編輯</a>
+                <a asp-action="Delete" asp-route-productNo="@item.ProductNo" class="btn btn-sm btn-danger">刪除</a>
+            </td>
+        </tr>
+    }
+    </tbody>
 </table>
