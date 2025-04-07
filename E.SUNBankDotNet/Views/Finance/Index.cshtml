@@ -1,0 +1,23 @@
+﻿@model IEnumerable<E.SUNBankDotNet.Models.LikeList>
+@{
+    ViewData["Title"] = "喜好清單";
+}
+
+<h2>喜好金融商品清單</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">新增喜好金融商品</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>產品名稱</th>
+        <th>數量</th>
+        <th>總手續費</th>
+        <th>預計扣款金額</th>
+        <th>帳號</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+</table>

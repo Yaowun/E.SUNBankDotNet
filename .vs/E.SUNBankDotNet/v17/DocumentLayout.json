@@ -1,0 +1,79 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SideProject\\E.SUNBankDotNet\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{685F2908-1428-4C05-9A9E-00967AEC3617}|E.SUNBankDotNet\\E.SUNBankDotNet.csproj|d:\\sideproject\\e.sunbankdotnet\\e.sunbankdotnet\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{685F2908-1428-4C05-9A9E-00967AEC3617}|E.SUNBankDotNet\\E.SUNBankDotNet.csproj|solutionrelative:e.sunbankdotnet\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{685F2908-1428-4C05-9A9E-00967AEC3617}|E.SUNBankDotNet\\E.SUNBankDotNet.csproj|d:\\sideproject\\e.sunbankdotnet\\e.sunbankdotnet\\repositories\\financedbrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{685F2908-1428-4C05-9A9E-00967AEC3617}|E.SUNBankDotNet\\E.SUNBankDotNet.csproj|solutionrelative:e.sunbankdotnet\\repositories\\financedbrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{685F2908-1428-4C05-9A9E-00967AEC3617}|E.SUNBankDotNet\\E.SUNBankDotNet.csproj|d:\\sideproject\\e.sunbankdotnet\\e.sunbankdotnet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{685F2908-1428-4C05-9A9E-00967AEC3617}|E.SUNBankDotNet\\E.SUNBankDotNet.csproj|solutionrelative:e.sunbankdotnet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 62,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\SideProject\\E.SUNBankDotNet\\E.SUNBankDotNet\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "E.SUNBankDotNet\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\SideProject\\E.SUNBankDotNet\\E.SUNBankDotNet\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "E.SUNBankDotNet\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAADwvxIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:43:12.859Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\SideProject\\E.SUNBankDotNet\\E.SUNBankDotNet\\Program.cs",
+              "RelativeDocumentMoniker": "E.SUNBankDotNet\\Program.cs",
+              "ToolTip": "D:\\SideProject\\E.SUNBankDotNet\\E.SUNBankDotNet\\Program.cs",
+              "RelativeToolTip": "E.SUNBankDotNet\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:42:20.136Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FinanceDBRepo.cs",
+              "DocumentMoniker": "D:\\SideProject\\E.SUNBankDotNet\\E.SUNBankDotNet\\Repositories\\FinanceDBRepo.cs",
+              "RelativeDocumentMoniker": "E.SUNBankDotNet\\Repositories\\FinanceDBRepo.cs",
+              "ToolTip": "D:\\SideProject\\E.SUNBankDotNet\\E.SUNBankDotNet\\Repositories\\FinanceDBRepo.cs",
+              "RelativeToolTip": "E.SUNBankDotNet\\Repositories\\FinanceDBRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:41:32.09Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
