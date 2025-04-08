@@ -20,7 +20,7 @@
     {
         <tr>
             <td>@item.ProductName</td>
-            <td>@item.ProductPrice</td>
+            <td>@item.Price</td>
             <td>@item.FeeRate</td>
             <td>@item.OrderQuantity</td>
             <td>@item.TotalAmount</td>
@@ -28,8 +28,8 @@
             <td>@item.Account</td>
             <td>@item.Email</td>
             <td>
-                <a asp-action="Edit" asp-route-productNo="@item.ProductNo" class="btn btn-sm btn-warning">編輯</a>
-                <a asp-action="Delete" asp-route-productNo="@item.ProductNo" class="btn btn-sm btn-danger">刪除</a>
+                <a asp-action="Edit" asp-route-SN="@item.SN" class="btn btn-sm btn-warning">編輯</a>
+                <a asp-action="Delete" asp-route-SN="@item.SN" class="btn btn-sm btn-danger">刪除</a>
             </td>
         </tr>
     }

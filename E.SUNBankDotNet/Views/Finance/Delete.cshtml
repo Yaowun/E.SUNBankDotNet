@@ -1,4 +1,4 @@
-﻿@model LikeListViewModel
+﻿@model LikeProductViewModel
 
 <h2>刪除喜好商品</h2>
 
@@ -6,9 +6,9 @@
     你確定要刪除 <strong>@Model.ProductName</strong> 嗎？
 </div>
 
-<form asp-action="DeleteConfirmed" method="post">
+<form asp-action="Delete" method="post">
     @Html.AntiForgeryToken()
-    <input type="hidden" asp-for="ProductNo" />
+    <input type="hidden" asp-for="SN" />
     <button type="submit" class="btn btn-danger">刪除</button>
     <a asp-action="Index" class="btn btn-secondary">取消</a>
 </form>

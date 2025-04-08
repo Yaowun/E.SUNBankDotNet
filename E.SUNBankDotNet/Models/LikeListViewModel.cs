@@ -5,8 +5,9 @@
         public string UserID { get; set; }
         public int ProductNo { get; set; }
         public string ProductName { get; set; }
-        public decimal ProductPrice { get; set; }
+        public decimal Price { get; set; }
         public decimal FeeRate { get; set; }
+        public int SN { get; set; }
         public int OrderQuantity { get; set; }
         public string Account { get; set; }
         public decimal TotalAmount { get; set; }

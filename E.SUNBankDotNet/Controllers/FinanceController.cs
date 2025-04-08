@@ -1,7 +1,5 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using E.SUNBankDotNet.Models;
-using E.SUNBankDotNet.Repositories;
 using E.SUNBankDotNet.Services;
 
 namespace E.SUNBankDotNet.Controllers;
@@ -9,7 +7,14 @@ namespace E.SUNBankDotNet.Controllers;
 public class FinanceController : Controller
 {
     private readonly ILikeListService _likeListService;
-    private const string UserId = "A1236456789"; // TODO: Need Login function to identify user
+
+    private readonly User _user = new()
+    {
+        UserID = "A1236456789",
+        UserName = "testUser1",
+        Email = "test1@email.com",
+        Account = "1111999666"
+    };
 
     public FinanceController(ILikeListService likeListService)
     {
@@ -18,7 +23,7 @@ public class FinanceController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var list = await _likeListService.GetLikeList(UserId);
+        var list = await _likeListService.GetLikeList(_user);
         return View(list);
     }
 
@@ -29,36 +34,32 @@ public class FinanceController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(LikeListViewModel model)
+    public async Task<IActionResult> Create(LikeProductViewModel model)
     {
         if (ModelState.IsValid)
         {
-            model.UserID = UserId;
-            await _likeListService.AddLikeProduct(model);
+            await _likeListService.AddLikeProduct(model, _user);
             return RedirectToAction("Index");
         }
         return View(model);
     }
 
     [HttpGet]
-    public async Task<IActionResult> Edit(int productNo)
+    public async Task<IActionResult> Edit(int SN)
     {
-        var list = await _likeListService.GetLikeList(UserId);
-        var item = list.FirstOrDefault(x => x.ProductNo == productNo);
-        if (item == null)
+        var model = (await _likeListService.GetLikeProduct(_user)).FirstOrDefault(x => x.SN == SN);
+        if (model == null)
         {
             return NotFound();
         }
-        return View(item);
+        return View(model);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(LikeListViewModel model)
+    public async Task<IActionResult> Edit(LikeProductViewModel model)
     {
         if (ModelState.IsValid)
         {
-            model.UserID = UserId;
-            Console.WriteLine(model.ProductNo);
             await _likeListService.UpdateLikeProduct(model);
             return RedirectToAction("Index");
         }
@@ -66,19 +67,18 @@ public class FinanceController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Delete(int productNo)
+    public async Task<IActionResult> Delete(int SN)
     {
-        var list = await _likeListService.GetLikeList(UserId);
-        var item = list.FirstOrDefault(x => x.ProductNo == productNo);
-        if (item == null)
+        var model = (await _likeListService.GetLikeProduct(_user)).FirstOrDefault(x => x.SN == SN);
+        if (model == null)
         {
             return NotFound();
         }
-        return View(item);
+        return View(model);
     }
 
-    [HttpPost, ActionName("Delete")]
-    public async Task<IActionResult> DeleteConfirmed(LikeListViewModel model)
+    [HttpPost]
+    public async Task<IActionResult> Delete(LikeProductViewModel model)
     {
         await _likeListService.DeleteLikeProduct(model);
         return RedirectToAction("Index");

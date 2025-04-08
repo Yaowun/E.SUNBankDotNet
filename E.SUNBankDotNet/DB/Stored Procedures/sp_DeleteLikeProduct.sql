@@ -1,22 +1,28 @@
 CREATE PROCEDURE [dbo].[sp_DeleteLikeProduct]
-    @ProductNo INT
+    @SN INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
     BEGIN TRY
-    BEGIN TRANSACTION;
+        BEGIN TRANSACTION;
+		
+		DECLARE @ProductNo INT;
+
+        SELECT @ProductNo = ProductNo
+        FROM [LikeList]
+        WHERE SN = @SN;
+        
+        DELETE FROM [LikeList]
+        WHERE SN = @SN;
+        
+        DELETE FROM [Product]
+        WHERE No = @ProductNo;
     
-    DELETE FROM [LikeList]
-    WHERE ProductNo = @ProductNo;
-    
-    DELETE FROM [Product]
-    WHERE No = @ProductNo;
-    
-    COMMIT TRANSACTION;
+        COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH
-    ROLLBACK TRANSACTION;
-            THROW;
+        ROLLBACK TRANSACTION;
+        THROW;
     END CATCH
 END;
