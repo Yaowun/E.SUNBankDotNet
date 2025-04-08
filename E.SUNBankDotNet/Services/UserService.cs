@@ -4,13 +4,6 @@ using E.SUNBankDotNet.Repositories;
 
 namespace E.SUNBankDotNet.Services;
 
-public interface IUserService
-{
-    Task<bool> IsUserExists(Customer customer);
-    Task CreateUser(Customer customer);
-    Task<Customer?> Authenticate(Customer customer);
-}
-
 public class UserService : IUserService
 {
     private readonly IFinanceDbRepo _dbRepo;

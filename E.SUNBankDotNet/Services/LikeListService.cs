@@ -5,15 +5,6 @@ using E.SUNBankDotNet.Repositories;
 
 namespace E.SUNBankDotNet.Services;
 
-public interface ILikeListService
-{
-    Task<List<LikeListViewModel>> GetLikeList(Customer customer);
-    Task<List<LikeProductViewModel>> GetLikeProduct(Customer customer);
-    Task AddLikeProduct(LikeProductViewModel model, Customer customer);
-    Task UpdateLikeProduct(LikeProductViewModel model);
-    Task DeleteLikeProduct(LikeProductViewModel model);
-}
-
 public class LikeListService : ILikeListService
 {
     private readonly IFinanceDbRepo _dbRepo;
