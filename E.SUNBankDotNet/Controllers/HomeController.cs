@@ -4,14 +4,9 @@ using E.SUNBankDotNet.Models;
 
 namespace E.SUNBankDotNet.Controllers;
 
-public class HomeController : Controller
+public class HomeController : BaseController
 {
     public IActionResult Index()
-    {
-        return View();
-    }
-
-    public IActionResult Privacy()
     {
         return View();
     }

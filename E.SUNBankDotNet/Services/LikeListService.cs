@@ -1,4 +1,5 @@
-﻿using E.SUNBankDotNet.Entities;
+﻿using E.SUNBankDotNet.Domains;
+using E.SUNBankDotNet.Entities;
 using E.SUNBankDotNet.Models;
 using E.SUNBankDotNet.Repositories;
 
@@ -6,9 +7,9 @@ namespace E.SUNBankDotNet.Services;
 
 public interface ILikeListService
 {
-    Task<List<LikeListViewModel>> GetLikeList(User user);
-    Task<List<LikeProductViewModel>> GetLikeProduct(User user);
-    Task AddLikeProduct(LikeProductViewModel model, User user);
+    Task<List<LikeListViewModel>> GetLikeList(Customer customer);
+    Task<List<LikeProductViewModel>> GetLikeProduct(Customer customer);
+    Task AddLikeProduct(LikeProductViewModel model, Customer customer);
     Task UpdateLikeProduct(LikeProductViewModel model);
     Task DeleteLikeProduct(LikeProductViewModel model);
 }
@@ -22,23 +23,23 @@ public class LikeListService : ILikeListService
         _dbRepo = dbRepo;
     }
 
-    public async Task<List<LikeListViewModel>> GetLikeList(User user)
+    public async Task<List<LikeListViewModel>> GetLikeList(Customer customer)
     {
-        var rawList = await _dbRepo.GetLikeListByUser(user);
+        var rawList = await _dbRepo.GetLikeListByUser(customer);
 
         return rawList.Select(Finance.ToLikeListViewModel).ToList();
     }
 
-    public async Task<List<LikeProductViewModel>> GetLikeProduct(User user)
+    public async Task<List<LikeProductViewModel>> GetLikeProduct(Customer customer)
     {
-        var rawList = await _dbRepo.GetLikeListByUser(user);
+        var rawList = await _dbRepo.GetLikeListByUser(customer);
 
         return rawList.Select(Finance.ToLikeProductViewModel).ToList();
     }
     
-    public async Task AddLikeProduct(LikeProductViewModel model, User user)
+    public async Task AddLikeProduct(LikeProductViewModel model, Customer customer)
     {
-        await _dbRepo.AddLikeProduct(model, user);
+        await _dbRepo.AddLikeProduct(model, customer);
     }
 
     public async Task UpdateLikeProduct(LikeProductViewModel model)

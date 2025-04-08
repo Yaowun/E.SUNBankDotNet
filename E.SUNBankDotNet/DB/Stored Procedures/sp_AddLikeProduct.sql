@@ -10,7 +10,13 @@ BEGIN
     SET NOCOUNT ON;
     BEGIN TRY
         BEGIN TRANSACTION;
-
+        
+        IF NOT EXISTS (SELECT 1 FROM [Account] WHERE UserID = @UserID AND Account = @Account)
+        BEGIN
+            INSERT INTO [Account] (UserID, Account)
+            VALUES (@UserID, @Account);
+        END
+        
         DECLARE @ProductNo INT;
 
         SELECT @ProductNo = [No]

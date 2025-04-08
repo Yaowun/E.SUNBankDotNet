@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Dapper;
+using E.SUNBankDotNet.Domains;
 using E.SUNBankDotNet.Entities;
 using E.SUNBankDotNet.Models;
 using Microsoft.Data.SqlClient;
@@ -8,11 +9,14 @@ namespace E.SUNBankDotNet.Repositories
 {
     public interface IFinanceDbRepo
     {
-        Task<List<Finance>> GetLikeListByUser(User user);
-        Task AddLikeProduct(LikeProductViewModel model, User user);
+        Task<List<Finance>> GetLikeListByUser(Customer customer);
+        Task AddLikeProduct(LikeProductViewModel model, Customer customer);
         Task UpdateLikeProduct(LikeProductViewModel model);
         Task DeleteLikeProduct(LikeProductViewModel model);
         
+        Task<bool> IsUserExists(Customer customer);
+        Task InsertUser(Customer customer);
+        Task<Customer?> Authenticate(Customer customer);
     }
 
     public class FinanceDbRepo : IFinanceDbRepo
@@ -24,12 +28,12 @@ namespace E.SUNBankDotNet.Repositories
             _connectionString = configuration.GetConnectionString("FinanceDB");
         }
 
-        public async Task<List<Finance>> GetLikeListByUser(User user)
+        public async Task<List<Finance>> GetLikeListByUser(Customer customer)
         {   
             await using SqlConnection conn = new SqlConnection(_connectionString);
             
             var parameters = new DynamicParameters();
-            parameters.Add("@UserID", user.UserID);
+            parameters.Add("@UserID", customer.UserID);
 
             return (await conn.QueryAsync<Finance>(
                 "sp_GetLikeListByUserID",
@@ -38,12 +42,12 @@ namespace E.SUNBankDotNet.Repositories
             )).ToList();
         }
 
-        public async Task AddLikeProduct(LikeProductViewModel model, User user)
+        public async Task AddLikeProduct(LikeProductViewModel model, Customer customer)
         {
             await using SqlConnection conn = new SqlConnection(_connectionString);
 
             var parameters = new DynamicParameters();
-            parameters.Add("@UserID", user.UserID);
+            parameters.Add("@UserID", customer.UserID);
             parameters.Add("@ProductName", model.ProductName);
             parameters.Add("@ProductPrice", model.Price);
             parameters.Add("@FeeRate", model.FeeRate);
@@ -85,6 +89,51 @@ namespace E.SUNBankDotNet.Repositories
 
             await conn.ExecuteAsync(
                 "sp_DeleteLikeProduct",
+                parameters,
+                commandType: CommandType.StoredProcedure
+            );
+        }
+        
+        public async Task<bool> IsUserExists(Customer customer)
+        {
+            await using SqlConnection conn = new SqlConnection(_connectionString);
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@UserID", customer.UserID);
+
+            var result = await conn.ExecuteScalarAsync<int>(
+                "sp_IsUserExists",
+                parameters
+            );
+            return result > 0;
+        }
+
+        public async Task InsertUser(Customer customer)
+        {
+            await using SqlConnection conn = new SqlConnection(_connectionString);
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@UserID", customer.UserID);
+            parameters.Add("@UserName", customer.UserName);
+            parameters.Add("@Email", customer.Email);
+
+            await conn.ExecuteAsync(
+                "sp_InsertUser",
+                parameters
+            );
+        }
+        
+
+        public async Task<Customer?> Authenticate(Customer customer)
+        {
+            await using SqlConnection conn = new SqlConnection(_connectionString);
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@UserID", customer.UserID);
+            parameters.Add("@Email", customer.Email);
+
+            return await conn.QueryFirstOrDefaultAsync<Customer>(
+                "sp_Authenticate",
                 parameters,
                 commandType: CommandType.StoredProcedure
             );

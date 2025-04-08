@@ -12,11 +12,18 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
     
+		DECLARE @UserID NVARCHAR(20);
+        DECLARE @OldAccount NVARCHAR(30);
         DECLARE @ProductNo INT;
-    
-        SELECT @ProductNo = ProductNo
+
+        SELECT @UserID = UserID, @OldAccount = Account, @ProductNo = ProductNo
         FROM [LikeList]
         WHERE SN = @SN;
+        
+        UPDATE [Account]
+        SET
+            Account = @NewAccount
+        WHERE UserID = @UserID and Account = @OldAccount
     
         UPDATE [Product]
         SET

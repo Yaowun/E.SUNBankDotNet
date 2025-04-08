@@ -1,20 +1,15 @@
+using E.SUNBankDotNet.Domains;
 using Microsoft.AspNetCore.Mvc;
 using E.SUNBankDotNet.Models;
 using E.SUNBankDotNet.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E.SUNBankDotNet.Controllers;
 
-public class FinanceController : Controller
+[Authorize]
+public class FinanceController : BaseController
 {
     private readonly ILikeListService _likeListService;
-
-    private readonly User _user = new()
-    {
-        UserID = "A1236456789",
-        UserName = "testUser1",
-        Email = "test1@email.com",
-        Account = "1111999666"
-    };
 
     public FinanceController(ILikeListService likeListService)
     {
@@ -23,7 +18,7 @@ public class FinanceController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var list = await _likeListService.GetLikeList(_user);
+        var list = await _likeListService.GetLikeList(GetCustomer());
         return View(list);
     }
 
@@ -38,7 +33,7 @@ public class FinanceController : Controller
     {
         if (ModelState.IsValid)
         {
-            await _likeListService.AddLikeProduct(model, _user);
+            await _likeListService.AddLikeProduct(model, GetCustomer());
             return RedirectToAction("Index");
         }
         return View(model);
@@ -47,7 +42,7 @@ public class FinanceController : Controller
     [HttpGet]
     public async Task<IActionResult> Edit(int SN)
     {
-        var model = (await _likeListService.GetLikeProduct(_user)).FirstOrDefault(x => x.SN == SN);
+        var model = (await _likeListService.GetLikeProduct(GetCustomer())).FirstOrDefault(x => x.SN == SN);
         if (model == null)
         {
             return NotFound();
@@ -69,7 +64,7 @@ public class FinanceController : Controller
     [HttpGet]
     public async Task<IActionResult> Delete(int SN)
     {
-        var model = (await _likeListService.GetLikeProduct(_user)).FirstOrDefault(x => x.SN == SN);
+        var model = (await _likeListService.GetLikeProduct(GetCustomer())).FirstOrDefault(x => x.SN == SN);
         if (model == null)
         {
             return NotFound();

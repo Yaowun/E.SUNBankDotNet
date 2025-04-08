@@ -2,8 +2,59 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <p>@ViewBag.Message</p>
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">歡迎來到金融商品喜好紀錄系統</h1>
+        <p class="lead text-secondary">此系統讓您輕鬆管理並記錄您所喜好的金融商品資訊。</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-primary">
+                        新增喜好金融商品
+                    </h5>
+                    <p class="card-text">使用者可以新增產品名稱、產品價格、手續費率等資訊。</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-success">
+                        查詢喜好清單
+                    </h5>
+                    <p class="card-text">使用者可以查詢產品清單並顯示預計扣款帳號、扣款總金額、總手續費等資訊。</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-danger">
+                        刪除金融商品
+                    </h5>
+                    <p class="card-text">使用者可以刪除已紀錄的金融商品資料。</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning">
+                        更改金融商品資訊
+                    </h5>
+                    <p class="card-text">使用者可以更新已紀錄的金融商品資訊。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(ViewBag.Message as string))
+    {
+        <div class="alert alert-info text-center mt-5" role="alert">
+            @ViewBag.Message
+        </div>
+    }
 </div>
