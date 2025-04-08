@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("E.SUNBankDotNet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9cce3721ca40833170fc325152df4e11e226b50")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bcfcfd3fa135299f21fda8dbd774a49d680fd80d")]
 [assembly: System.Reflection.AssemblyProductAttribute("E.SUNBankDotNet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("E.SUNBankDotNet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
