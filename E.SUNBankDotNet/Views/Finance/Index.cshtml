@@ -1,37 +1,49 @@
 ﻿@model List<LikeListViewModel>
 
-<a asp-action="Create" class="btn btn-primary mb-3">新增喜好商品</a>
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th>產品</th>
-        <th>價格</th>
-        <th>手續費</th>
-        <th>數量</th>
-        <th>總金額</th>
-        <th>總手續費</th>
-        <th>扣款帳號</th>
-        <th>信箱</th>
-        <th>操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.ProductName</td>
-            <td>@item.Price</td>
-            <td>@item.FeeRate</td>
-            <td>@item.OrderQuantity</td>
-            <td>@item.TotalAmount</td>
-            <td>@item.TotalFee</td>
-            <td>@item.Account</td>
-            <td>@item.Email</td>
-            <td>
-                <a asp-action="Edit" asp-route-SN="@item.SN" class="btn btn-sm btn-warning">編輯</a>
-                <a asp-action="Delete" asp-route-SN="@item.SN" class="btn btn-sm btn-danger">刪除</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+<div class="container px-2 px-md-4">
+    <h2 class="my-4 text-center">喜好商品清單</h2>
+
+    <div class="d-flex justify-content-start mb-3">
+        <a asp-action="Create" class="btn btn-primary">新增喜好商品</a>
+    </div>
+
+    <!-- Responsive Table Wrapper -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle text-nowrap">
+            <thead class="table-light">
+            <tr>
+                <th class="text-center">操作</th>
+                <th>產品</th>
+                <th>價格</th>
+                <th>手續費</th>
+                <th>數量</th>
+                <th>總金額</th>
+                <th>總手續費</th>
+                <th>扣款帳號</th>
+                <th>信箱</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">
+                        <div class="d-flex flex-wrap gap-1 justify-content-center">
+                            <a asp-action="Edit" asp-route-SN="@item.SN" class="btn btn-sm btn-warning">編輯</a>
+                            <a asp-action="Delete" asp-route-SN="@item.SN" class="btn btn-sm btn-danger">刪除</a>
+                        </div>
+                    </td>
+                    <td>@item.ProductName</td>
+                    <td>@item.Price</td>
+                    <td>@item.FeeRate</td>
+                    <td>@item.OrderQuantity</td>
+                    <td>@item.TotalAmount</td>
+                    <td>@item.TotalFee</td>
+                    <td>@item.Account</td>
+                    <td>@item.Email</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,14 +1,19 @@
 ﻿@model LikeProductViewModel
 
-<h2>刪除喜好商品</h2>
+<div class="container px-3 px-md-5">
+    <h2 class="my-4 text-center">刪除喜好商品</h2>
 
-<div class="alert alert-danger">
-    你確定要刪除 <strong>@Model.ProductName</strong> 嗎？
+    <div class="alert alert-danger text-center">
+        你確定要刪除 <strong>@Model.ProductName</strong> 嗎？
+    </div>
+
+    <form asp-action="Delete" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="SN" />
+
+        <div class="d-flex flex-column flex-md-row justify-content-center gap-2 mt-3">
+            <button type="submit" class="btn btn-danger">刪除</button>
+            <a asp-action="Index" class="btn btn-secondary">取消</a>
+        </div>
+    </form>
 </div>
-
-<form asp-action="Delete" method="post">
-    @Html.AntiForgeryToken()
-    <input type="hidden" asp-for="SN" />
-    <button type="submit" class="btn btn-danger">刪除</button>
-    <a asp-action="Index" class="btn btn-secondary">取消</a>
-</form>
